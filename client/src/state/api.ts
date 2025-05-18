@@ -348,8 +348,26 @@ export const api = createApi({
         });
       },
     }),
+
+    createPayment: build.mutation<Payment, Partial<Payment>>({
+      query: (body) => ({
+        url: `payments`,
+        method: "POST",
+        body: body,
+      }),
+      invalidatesTags: ["Payments"],
+      async onQueryStarted(_, { queryFulfilled }) {
+        await withToast(queryFulfilled, {
+          success: "Payment created successfully!",
+          error: "Failed to create payment.",
+        });
+      },
+    }),
+
+
   }),
 });
+
 
 export const {
   useGetAuthUserQuery,
@@ -369,4 +387,6 @@ export const {
   useGetApplicationsQuery,
   useUpdateApplicationStatusMutation,
   useCreateApplicationMutation,
+  useCreatePaymentMutation
 } = api;
+

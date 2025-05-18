@@ -111,6 +111,7 @@ model Tenant {
   name        String
   email       String
   phoneNumber String
+  stripeCustomerId string
 
   properties   Property[]    @relation("TenantProperties")
   favorites    Property[]    @relation("TenantFavorites")

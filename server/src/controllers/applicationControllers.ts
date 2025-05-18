@@ -1,5 +1,6 @@
-import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
+import { Request, Response } from "express";
+
 
 const prisma = new PrismaClient();
 
@@ -127,6 +128,9 @@ export const createApplication = async (
           },
         },
       });
+
+
+
 
       // Then create application with lease connection
       const application = await prisma.application.create({
